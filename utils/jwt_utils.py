@@ -3,13 +3,6 @@ import jwt
 from datetime import datetime, timedelta
 from functools import wraps
 from flask import request, jsonify
-import os
-from dotenv import load_dotenv
-from decouple import config
-
-# Cargar automáticamente las variables de entorno desde el archivo .env
-nombre_usuario = config('USER')
-print("Nombre de usuario:", nombre_usuario)
 
 def generate_token(user_id):
     # Define la fecha de expiración del token (1 hora desde ahora)
