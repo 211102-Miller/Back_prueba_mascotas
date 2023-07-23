@@ -25,6 +25,10 @@ def get_adopted():
 def form_adopted():
     return forms()
 
+@app.route('/', methods=['GET'])
+def home():
+    return '¡Bienvenido a mi aplicación Flask!'
+
 
 
 if __name__ == '__main__':
