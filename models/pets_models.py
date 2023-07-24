@@ -1,12 +1,17 @@
 from firebase_admin import credentials, firestore, storage
 import uuid
 from firebase_connection import db_firestore
+from dotenv import dotenv_values
+
+# Cargar las variables de entorno desde el archivo .env
+env_variables = dotenv_values('venv/.env_todo')
+
 
 class FormAdoptedModel:
     def save_form_data(self, nombre, raza, image, horario, ubicacion):
         filename = image.filename
         document_id = str(uuid.uuid4())
-        bucket = storage.bucket('back-flutter-a83ed.appspot.com')
+        bucket = storage.bucket(env_variables.get('BUCKET'))
         blob = bucket.blob(f'formAdopted/{filename}')
         blob.content_type = 'image/jpeg'
         blob.upload_from_file(image)

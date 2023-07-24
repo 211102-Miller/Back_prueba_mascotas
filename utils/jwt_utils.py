@@ -4,6 +4,18 @@ from datetime import datetime, timedelta
 from functools import wraps
 from flask import request, jsonify
 
+from dotenv import dotenv_values
+
+# Cargar las variables de entorno desde el archivo .env
+env_variables = dotenv_values('venv/.env_todo')
+
+# Obtener el valor de una variable de entorno específica, por ejemplo, "DATABASE_URL"
+clave = env_variables.get('CLAVE_JWT')
+
+print(clave)
+
+
+
 def generate_token(user_id):
     # Define la fecha de expiración del token (1 hora desde ahora)
     expiration_date = datetime.utcnow() + timedelta(hours=1)
@@ -15,14 +27,14 @@ def generate_token(user_id):
     }
 
     # Genera el token JWT firmado con la clave secreta
-    token = jwt.encode(payload, 'IxAH7SjefD_IfpquIJP2a3ukYMs0E0s4MU-44jAgxSI', algorithm='HS256')
+    token = jwt.encode(payload, clave, algorithm='HS256')
 
     return token
 
 def verify_token(token):
     try:
         # Decodifica el token JWT y verifica la firma utilizando la clave secreta
-        payload = jwt.decode(token, 'IxAH7SjefD_IfpquIJP2a3ukYMs0E0s4MU-44jAgxSI', algorithms=['HS256'])
+        payload = jwt.decode(token, clave, algorithms=['HS256'])
         user_id = payload['user_id']
         return user_id
     except jwt.ExpiredSignatureError:
@@ -48,7 +60,7 @@ def token_required(f):
 
         try:
             # Decodificar y verificar el token
-            payload = jwt.decode(token, 'IxAH7SjefD_IfpquIJP2a3ukYMs0E0s4MU-44jAgxSI', algorithms=['HS256'])
+            payload = jwt.decode(token, clave, algorithms=['HS256'])
             # Aquí puedes realizar validaciones adicionales según tus necesidades
 
         except jwt.ExpiredSignatureError:
