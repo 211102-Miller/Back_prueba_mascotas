@@ -52,6 +52,5 @@ uuid==1.30
 Werkzeug==2.3.6
 zope.interface==6.0
 gunicorn
-pycryptome
 python-decouple
 python-dotenv
