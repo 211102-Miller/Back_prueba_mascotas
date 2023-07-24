@@ -5,7 +5,7 @@ from firebase_admin import credentials, firestore, initialize_app
 from dotenv import dotenv_values
 
 # Cargar las variables de entorno desde el archivo .env
-env_variables = dotenv_values('venv/.env_todo')
+env_variables = dotenv_values('venv/.env')
 
 # Verifica que las variables de entorno se hayan cargado correctamente
 print("Variables de entorno cargadas:")
