@@ -18,4 +18,3 @@ initialize_app(cred, options={
 
 # Obtén una referencia a la colección en Firestore
 db_firestore = firestore.client()
-storage_bucket = firebase_admin.storage.bucket()
