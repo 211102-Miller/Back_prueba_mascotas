@@ -4,7 +4,7 @@ from firebase_connection import db_firestore
 from dotenv import dotenv_values
 
 # Cargar las variables de entorno desde el archivo .env
-env_variables = dotenv_values('venv/.env')
+env_variables = dotenv_values('.env')
 
 
 class FormAdoptedModel:

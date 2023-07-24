@@ -7,7 +7,7 @@ from flask import request, jsonify
 from dotenv import dotenv_values
 
 # Cargar las variables de entorno desde el archivo .env
-env_variables = dotenv_values('venv/.env')
+env_variables = dotenv_values('.env')
 
 # Obtener el valor de una variable de entorno específica, por ejemplo, "DATABASE_URL"
 clave = env_variables.get('CLAVE_JWT')
